@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TCS Quiz by Kaviya</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    .quiz-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question h3 {
+      margin-bottom: 10px;
+    }
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #result {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>TCS Quiz Challenge</h1>
+
+    <form id="quizForm">
+      <!-- Questions go here -->
+    </form>
+
+    <button onclick="submitQuiz()">Submit</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "1. When was TCS founded?",
+        options: ["1968", "1975", "1985", "1991"],
+        answer: "1968"
+      },
+      {
+        question: "2. Who was the First CEO of TCS?",
+        options: ["Jamsetji Nusserwanji Tata", "Rajesh Gopinathan", "Faqir Chand Kohli", "Ratan Tata"],
+        answer: "Faqir Chand Kohli"
+      },
+      {
+        question: "3. What does TCS stand for?",
+        options: ["Tata Consultancy Services", "Technical Computing Systems", "Tata Computer Solutions", "None of these"],
+        answer: "Tata Consultancy Services"
+      },
+      {
+        question: "4. F C Kohli is often referred as ",
+        options: ["Father of the Indian IT Industry", "Father of Computer", "Father of TCS", "None of the above"],
+        answer: "Father of the Indian IT Industry"
+      },
+      {
+        question: "5. Who are the clients of TCS?",
+        options: ["Bank Of America", "J P Morgan", "HDFC Bank", "All of the above"],
+        answer: "All of the above"
+      },
+      {
+        question: "6. TCS headquarter is located in which part of India?",
+        options: ["Delhi", "Mumbai", "Chennai", "Bangalore"],
+        answer: "Mumbai"
+      },
+      {
+        question: "7. Who is the current Managing Director and CEO of TCS?",
+        options: ["K. Krithivasan", "N. Chandrasekaran", "Subramaniam Ramadorai", "Rajesh Gopinathan"],
+        answer: "K. Krithivasan"
+      },
+      {
+        question: "8. TCS established India's first dedicated software research and development center, TRDDC in which year ",
+        options: ["1950", "1960", "1970", "1980"],
+        answer: "1980"
+      },
+      {
+        question: "9. Who is the Founder of TCS?",
+        options: ["J. R. D. Tata", "Ratan Tata", "Naval Tata", "Jamsetji Tata"],
+        answer: "J. R. D. Tata"
+      },
+      {
+        question: "10. TCS is part of which larger conglomerate?",
+        options: ["Reliance Group", "Tata Group", "Aditya Birla Group", "Mahindra Group"],
+        answer: "Tata Group"
+      }
+    ];
+
+    const form = document.getElementById('quizForm');
+
+    questions.forEach((q, index) => {
+      const div = document.createElement('div');
+      div.classList.add('question');
+      div.innerHTML = `<h3>${q.question}</h3>` + q.options.map(opt => `
+        <label><input type="radio" name="q${index}" value="${opt}"> ${opt}</label><br>
+      `).join('');
+      form.appendChild(div);
+    });
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, i) => {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if (selected && selected.value === q.answer) {
+          score++;
+        }
+      });
+      document.getElementById('result').textContent = `You scored ${score} out of ${questions.length}`;
+    }
+  </script>
+</body>
+</html>
